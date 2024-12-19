@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>phototrnsfr</title>
+        <link rel="stylesheet" href="static/client_page_style.css">
+        <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+        <script src="static/main.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Photos of 2024!<hr></h1>
+
+            <img class="image_preview" id="main_image" src="static/photos/100/DSCF0115.JPG">
+            
+            <p class="photo_caption">Hello this is p</p>
+
+            <div class="control_panel">
+                <button onclick="openFullscreen();">Prev</button>
+                <button onclick="openFullscreen();">Fullscreen</button>
+                <button onclick="emitmymessage();">Next</button>
+            </div>
+
+        </div>
+    </body>
+
+</html>
