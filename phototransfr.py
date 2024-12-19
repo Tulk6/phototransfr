@@ -1,8 +1,10 @@
-import flask, waitress, socket, os
+import flask, waitress, socket, os, json
 from flask_websockets import WebSockets, ws
-
 from gevent import pywsgi
 from geventwebsocket.handler import WebSocketHandler
+
+with open('photo_manifest.txt') as f:
+    photo_manifest = json.loads(f.read())
 
 app = flask.Flask(__name__)
 sockets = WebSockets(app)
@@ -11,8 +13,14 @@ number_of_photos = len(os.listdir('static/photos/'))
 
 current_photo_index = 0
 
+def get_image_info(photo_index):
+    img_date = photo_manifest[str(photo_index)]['datetime']
+    img_caption = photo_manifest[str(photo_index)]['caption']
+    img_index = str(photo_index)
+    return f'{img_index}|{img_date}|{img_caption}'
+
 def init_client_sync():
-    ws.send(str(current_photo_index))
+    ws.send(get_image_info(current_photo_index))
 
 sockets.on_open(init_client_sync)
 
@@ -32,9 +40,12 @@ def sync_clients(message):
         current_photo_index += 1
     elif message == 'prev':
         current_photo_index -= 1
+    else:
+        current_photo_index = int(message)
     current_photo_index = min(max(0, current_photo_index), number_of_photos)
     print(current_photo_index)
-    sockets.broadcast(str(current_photo_index))
+    sockets.broadcast(get_image_info(current_photo_index))
 
 server = pywsgi.WSGIServer(('james-lenovo', 4664), app, handler_class=WebSocketHandler)
 server.serve_forever()
+

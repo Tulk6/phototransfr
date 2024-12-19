@@ -12,12 +12,19 @@
 
             <img class="image_preview" id="main_image" src="static/photos/0.JPG">
             
-            <p class="photo_caption">Hello this is p</p>
+            <p class="photo_caption" id="image_caption">Hello this is p</p>
 
             <div class="control_panel">
-                <button onclick="openFullscreen();">Prev</button>
+                <button onclick="emit_prev();">Prev</button>
                 <button onclick="openFullscreen();">Fullscreen</button>
                 <button onclick="emit_next();">Next</button>
+            </div>
+
+            <div class="control_panel">
+                <form id="emit_index_form">
+                    <input type="text" id="emit_index" name="jump_image_index" />
+                    <input type="submit" value="Jump"/>
+                </form>
             </div>
 
         </div>

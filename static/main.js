@@ -15,12 +15,19 @@ function get_file_from_image_index(index) {
 }
 
 var current_image_index = 0;
+var current_image_caption = "";
+var current_image_datetime = "";
 
 var main_image_element = document.getElementById("main_image");
+var image_caption_element = document.getElementById("image_caption");
 
-function set_current_image_index(index) {
-    current_image_index = index;
-    main_image_element.src = get_file_from_image_index(index);
+function set_current_image(message) {
+    var message_parts = message.split("|")
+    current_image_index = message_parts[0];
+    current_image_datetime = message_parts[1];
+    current_image_caption = message_parts[2];
+    main_image_element.src = get_file_from_image_index(current_image_index);
+    image_caption_element.innerHTML = '<b>('+current_image_index+') '+current_image_datetime+':</b> '+current_image_caption;
 }
 
 function emit_next(){
@@ -31,6 +38,15 @@ function emit_prev(){
     ws.send("prev");
 }
  
+function emit_index(evt){
+    evt.preventDefault()
+    var message = document.getElementById('emit_index').value;
+    ws.send(message);
+    return false;
+}
+var emit_index_form = document.getElementById('emit_index_form');
+emit_index_form.addEventListener('submit', emit_index);
+
 
 function openFullscreen(){
     var elem = document.getElementById("main_image");
@@ -48,7 +64,7 @@ function init_ws(){
 
     ws.onmessage = function(evt) {
         console.log(evt.data);
-        set_current_image_index(evt.data);
+        set_current_image(evt.data);
     }
 }
 init_ws();
