@@ -47,6 +47,14 @@ function emit_index(evt){
 var emit_index_form = document.getElementById('emit_index_form');
 emit_index_form.addEventListener('submit', emit_index);
 
+window.onkeydown = function(event) {
+    if (event.keyCode == 37) {
+        emit_prev();
+    }else if (event.keyCode = 39) {
+        emit_next();
+    }
+};
+
 
 function openFullscreen(){
     var elem = document.getElementById("main_image");

@@ -42,7 +42,7 @@ def sync_clients(message):
         current_photo_index -= 1
     else:
         current_photo_index = int(message)
-    current_photo_index = min(max(0, current_photo_index), number_of_photos)
+    current_photo_index = min(max(0, current_photo_index), number_of_photos-1)
     print(current_photo_index)
     sockets.broadcast(get_image_info(current_photo_index))
 
