@@ -11,7 +11,7 @@ function emitmymessage(){
 */
 
 function get_file_from_image_index(index) {
-    return "static/photos/100/DSCF0472.jpg"
+    return "static/photos/"+index+".jpg";
 }
 
 var current_image_index = 0;
@@ -23,8 +23,12 @@ function set_current_image_index(index) {
     main_image_element.src = get_file_from_image_index(index);
 }
 
-function emitmymessage(){
-    ws.send("what up b");
+function emit_next(){
+    ws.send("next");
+}
+
+function emit_prev(){
+    ws.send("prev");
 }
  
 
@@ -44,7 +48,7 @@ function init_ws(){
 
     ws.onmessage = function(evt) {
         console.log(evt.data);
-        set_current_image_index(100);
+        set_current_image_index(evt.data);
     }
 }
 init_ws();
