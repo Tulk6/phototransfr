@@ -21,7 +21,7 @@ def send_raw_photo(name):
 
 @sockets.on_message
 def echo(message):
-    return message
+    sockets.broadcast(message)
 
 server = pywsgi.WSGIServer(('james-lenovo', 4664), app, handler_class=WebSocketHandler)
 server.serve_forever()
