@@ -4,8 +4,11 @@ from PIL import Image, ExifTags
 def get_number_of_files_in_folder(path):
     return len(os.listdir(path))
 
-dcim_dir = "E:/best_photos/"
-out_folder = "static/photos/"
+dcim_dir = ""
+out_folder = ""
+
+if dcim_dir == "" or out_folder == "":
+    raise ValueError("Paths must be provided for dcim_dir (source of photos) and out_dir (where sorted photos are placed)")
 
 manifest = {}
 
@@ -50,5 +53,5 @@ for current_photo_index, photo in enumerate(all_photos):
 
 print(sum_photos)
 
-with open('photo_manifest.txt', 'w') as f:
+with open(out_dir+'photo_manifest.txt', 'w') as f:
     f.write(json.dumps(manifest))
