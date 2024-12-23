@@ -1,0 +1,1 @@
+Made to do a slideshow with all the photos from this year with my friends. A web page is hosted locally which displays the photos from the year, and which is synced across all devices, such that it can be displayed on a computer and then controlled from a phone, and if anybody wants to download a photo, all they have to do is visit the page and save the image!
