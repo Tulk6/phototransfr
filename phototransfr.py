@@ -46,6 +46,6 @@ def sync_clients(message):
     print(current_photo_index)
     sockets.broadcast(get_image_info(current_photo_index))
 
-server = pywsgi.WSGIServer(('james-lenovo', 4664), app, handler_class=WebSocketHandler)
+server = pywsgi.WSGIServer((socket.gethostname(), 4664), app, handler_class=WebSocketHandler)
 server.serve_forever()
 
