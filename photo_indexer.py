@@ -24,7 +24,7 @@ for folder in os.listdir(dcim_dir):
         try:
             datetime_str = img_exif[ExifTags.Base.DateTime]
         except KeyError:
-            continue
+            datetime_srt = '1970:01:01 00:00:00'
         datetime_obj = datetime.datetime.strptime(datetime_str, '%Y:%m:%d %H:%M:%S')
         datetime_formatted = datetime.datetime.strftime(datetime_obj, '%A, %d %b, %Y at %X')
         epoch = datetime_obj.timestamp()
