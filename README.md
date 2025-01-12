@@ -1,1 +1,5 @@
 Made to do a slideshow with all the photos from this year with my friends. A web page is hosted locally which displays the photos from the year, and which is synced across all devices, such that it can be displayed on a computer and then controlled from a phone, and if anybody wants to download a photo, all they have to do is visit the page and save the image!
+
+In order to use, photos must be placed into the static/photos folder, numbered sequentially from 0 in the order that they will be displayed (right now they must also be jpg). This can be done from a DCIM folder using the photo_indexer.py program. Next, run the phototransfr.py file, which will launch the server on port 4664 and the devices hostname. Visiting this address will show a page with the photo, buttons for previous and next, a fullscreen button, and a text box with a 'jump' button. Also displayed are the photos index, datetime, and description. Pressing entering an index and pressing jump will skip to the photo with that index. 
+
+My first web project, and so also first with websockets. Not v well made but works. Web sockets r v fun.
