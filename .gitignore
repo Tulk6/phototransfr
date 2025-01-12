@@ -166,3 +166,8 @@ static/photos/*
 *.ttf
 
 photo_manifest.txt
+
+static/p_photos
+static/p_photos/*
+photos/
+old_manifest.txt
